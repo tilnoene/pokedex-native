@@ -1,6 +1,11 @@
 import React from 'react';
-import { StyleSheet, View, FlatList, useColorScheme } from 'react-native';
+import { StyleSheet, View, useColorScheme } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
+
+import { UserProvider } from './src/context/UserContext';
+import RootNavigator from './src/pages/RootNavigator';
+import { NavigationContainer } from '@react-navigation/native';
+
 import { useFonts } from 'expo-font';
 import {
   Inter_400Regular,
@@ -35,10 +40,12 @@ export default function App() {
   const theme = themes[deviceTheme] || themes.light;*/
 
   return (
-    <View style={styles.container}>
-      <StatusBar style='dark' backgroundColor='#fff' translucent={false} />
-      <Feed />
-    </View>
+    <UserProvider>
+      <NavigationContainer>
+        <StatusBar style='dark' backgroundColor='#fff' translucent={false} />
+        <RootNavigator />
+      </NavigationContainer>
+    </UserProvider>
   );
 }
 

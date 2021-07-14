@@ -7,3 +7,11 @@ type Pokemon = {
     height: number;
     kind: string;
 };
+
+type User = {
+    user: {
+        id: number;
+        username: string;
+    },
+    pokemons: Pokemon[];
+}

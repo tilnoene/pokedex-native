@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View, useColorScheme } from 'react-native';
+import { StyleSheet, View, FlatList, useColorScheme } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { useFonts } from 'expo-font';
 import {
@@ -8,6 +8,7 @@ import {
 } from '@expo-google-fonts/inter';
 import {
   Barlow_300Light_Italic,
+  Barlow_400Regular,
   Barlow_500Medium,
   Barlow_600SemiBold,
   Barlow_700Bold,
@@ -22,6 +23,7 @@ export default function App() {
     Inter_400Regular,
     Inter_500Medium,
     Barlow_300Light_Italic,
+    Barlow_400Regular,
     Barlow_500Medium,
     Barlow_600SemiBold,
     Barlow_700Bold,

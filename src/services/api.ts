@@ -1,10 +1,8 @@
 import axios from 'axios';
+import Constants from 'expo-constants';
 
 const api = axios.create({
-    baseURL: 'https://pokedex20201.herokuapp.com',
-    headers: {
-        'Content-Type': 'application/json',
-    }
+    baseURL: Constants.manifest?.extra?.apiURL
 });
 
 export default api;

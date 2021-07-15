@@ -1,6 +1,7 @@
 import React from 'react';
-import { StyleSheet, View, useColorScheme } from 'react-native';
+import { StyleSheet, useColorScheme } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
+import AppLoading from 'expo-app-loading';
 
 import { UserProvider } from './src/context/UserContext';
 import RootNavigator from './src/pages/RootNavigator';
@@ -19,8 +20,6 @@ import {
   Barlow_700Bold,
 } from '@expo-google-fonts/barlow';
 
-import Feed from './src/pages/Feed';
-
 //import { themes } from './styles/themes';
 
 export default function App() {
@@ -34,10 +33,7 @@ export default function App() {
     Barlow_700Bold,
   });
 
-  if (!loaded) return null;
-
-  /*const deviceTheme = useColorScheme(); // dark, light, null
-  const theme = themes[deviceTheme] || themes.light;*/
+  if (!loaded) return <AppLoading />;
 
   return (
     <UserProvider>
@@ -48,12 +44,3 @@ export default function App() {
     </UserProvider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});

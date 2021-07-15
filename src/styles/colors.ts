@@ -5,4 +5,5 @@ export const Colors = {
   gray300: '#565656',
   gray100: '#232323',
   primary: '#E51C44',
+  red300: '#F07886',
 };

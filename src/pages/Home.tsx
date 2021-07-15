@@ -14,14 +14,14 @@ import { Feather } from '@expo/vector-icons';
 
 export default function Home() {
     return (
-        <Tab.Navigator 
+        <Tab.Navigator
             tabBarOptions={{
                 style: {
                     backgroundColor: Colors.primary,
                     borderTopColor: 'transparent',
                 },
                 activeTintColor: Colors.white,
-                inactiveTintColor: Colors.gray500
+                inactiveTintColor: Colors.red300
             }}
             initialRouteName='Feed'
         >

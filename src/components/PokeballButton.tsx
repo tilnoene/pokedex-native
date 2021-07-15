@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
 
-import { Sizing, Colors } from '../styles';
+import { Colors } from '../styles';
 
 export default function PokeballButton({ color }: { color: string }) {
     return (
@@ -16,8 +16,8 @@ export default function PokeballButton({ color }: { color: string }) {
 
 const styles = StyleSheet.create({
     container: {
-        width: 80,
-        height: 80,
+        width: 78,
+        height: 78,
         borderRadius: 40,
         backgroundColor: Colors.primary,
         alignItems: 'center',

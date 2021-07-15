@@ -3,6 +3,7 @@ import { View, Text, Image, StyleSheet } from 'react-native';
 import { useUser } from '../context/UserContext';
 
 import { Sizing, Colors } from '../styles';
+import { Feather } from '@expo/vector-icons';
 
 export default function Favorites() {
     const { user } = useUser();
@@ -18,8 +19,12 @@ export default function Favorites() {
                     <Text style={styles.username}>{user && user.user.username}</Text>
                 </View>
 
+                <View style={styles.containerLogout}>
+                    <Feather name='log-out' color={Colors.white} size={Sizing.x30} />
+                </View>
+
                 <View style={{ alignSelf: 'flex-start' }}>
-                    <Text style={styles.subtitle}>{7} Favoritos</Text>
+                    <Text style={styles.subtitle}>{user?.pokemons.length} Favorito{user?.pokemons.length !== 1 && 's'}</Text>
                 </View>
             </View>
         </View>
@@ -65,5 +70,11 @@ const styles = StyleSheet.create({
         fontSize: Sizing.x20,
         marginTop: 112,
         marginLeft: -32,
+    },
+    containerLogout: {
+        backgroundColor: 'blue',
+        alignSelf: 'flex-end',
+        alignItems: 'flex-end',
+       
     }
 });

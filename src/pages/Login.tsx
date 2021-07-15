@@ -28,7 +28,10 @@ export default function Login() {
     return (
         <SafeAreaView style={styles.layout}>
             <View style={styles.container}>
-                {/*<Image style={styles.image} source={require('../../assets/illustrations/login-illustration.png')} />*/}
+                <Image
+                    style={styles.image}
+                    source={require('../../assets/illustrations/login-illustration.png')}
+                />
                 <Text style={styles.title}>Explore e descubra{'\n'} o maravilhoso{'\n'} mundo Pokémon</Text>
                 <Text style={styles.subtitle}>Temos que pegar!</Text>
                 <TextInput

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { SafeAreaView, View, Image, Text, TextInput, StyleSheet } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
 import { useUser } from '../context/UserContext';
 import api from '../services/api';
@@ -14,6 +15,7 @@ export default function Login() {
     const [error, setError] = useState('');
 
     const { setUser } = useUser();
+    const { navigate } = useNavigation();
 
     const handleLogin = () => {
         api.get(`/users/${username}`)
@@ -49,7 +51,7 @@ export default function Login() {
                     <Text style={styles.buttonText}>Entrar</Text>
                 </Button>
                 
-                <LinkButton text='Criar conta' />
+                <LinkButton text='Criar conta' onPress={() => navigate('SignUp')} />
             </View>
         </SafeAreaView>
     );

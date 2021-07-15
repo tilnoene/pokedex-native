@@ -5,7 +5,8 @@ const Stack = createStackNavigator();
 
 import { useUser } from '../context/UserContext';
 
-import Login from './SignUp';
+import Login from './Login';
+import SignUp from './SignUp';
 import Home from './Home';
 
 export default function RootNavigator() {
@@ -18,6 +19,7 @@ export default function RootNavigator() {
             ) : (
                 <Stack.Screen name='Login' component={Login} />
             )}
+            <Stack.Screen name='SignUp' component={SignUp} />
         </Stack.Navigator>
     );
 }

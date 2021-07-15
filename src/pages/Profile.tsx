@@ -16,7 +16,7 @@ export default function Favorites() {
         <View style={styles.container}>
             <View style={styles.header}>
                 <View style={styles.containerProfilePicture}>
-                    <Image source={require('../../assets/images/default-user-image.png')} style={styles.profilePicture} />
+                    <Image source={require('../../assets/images/natalia.jpg')/* require('../../assets/images/default-user-image.png') */} style={styles.profilePicture} />
                 </View>
                 
                 <View style={styles.containerRight}>
@@ -33,16 +33,28 @@ export default function Favorites() {
                 </View>
             </View>
 
-            <View style={styles.containerPokemons}>
-                <Text>Ab</Text>
-            </View>
+            {user?.pokemons.length === 0 ? 
+                <View>
+                    <Image style={styles.image} source={require('../../assets/illustrations/pikachu-confused-illustration.jpg')} />
+                    <Text style={styles.title}>
+                        Você ainda não favoritou{'\n'} 
+                        nenhum Pokémon!
+                    </Text>
+                </View>
+            : 
+                <View style={styles.containerPokemons}>
+                    <Text>Ab</Text>
+                </View>
+            }
+
+            
         </View>
     );
 }
 
 const styles = StyleSheet.create({
     container: {
-        
+        backgroundColor: Colors.white,
     },
     header: {
         width: '100%',
@@ -91,6 +103,18 @@ const styles = StyleSheet.create({
         alignItems: 'flex-end',
         marginRight: 15,
         marginBottom: 5,
+    },
+    image: {
+        height: 200,
+        width: '100%',
+        resizeMode: 'contain',
+    },
+    title: {
+        fontFamily: 'Barlow_700Bold',
+        color: Colors.gray300,
+        fontSize: 22,
+        textAlign: 'center',
+        marginTop: -4,
     },
     containerPokemons: {
         width: '100%',

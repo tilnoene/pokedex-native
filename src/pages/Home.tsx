@@ -18,8 +18,9 @@ export default function Home() {
             tabBarOptions={{
                 style: {
                     backgroundColor: Colors.primary,
-                    borderTopColor: 'transparent',
+                    borderTopColor: 'transparent'
                 },
+                showLabel: false,
                 activeTintColor: Colors.white,
                 inactiveTintColor: Colors.red300
             }}

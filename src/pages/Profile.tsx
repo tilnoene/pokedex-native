@@ -10,7 +10,7 @@ import ModalView from '../components/ModalView';
 export default function Favorites() {
     const [showModal, setShowModal] = useState(false);
 
-    const { user } = useUser();
+    const { user, setUser } = useUser();
 
     return (
         <View style={styles.container}>
@@ -25,7 +25,7 @@ export default function Favorites() {
                         <Text style={styles.subtitle}>{user?.pokemons.length} Favorito{user?.pokemons.length !== 1 && 's'}</Text>
                     </View>
 
-                    <Pressable onPress={() => setShowModal(true)}>
+                    <Pressable onPress={() => setUser()}>
                         <Feather style={styles.containerLogout} name='log-out' color={Colors.white} size={Sizing.x30} />
                     </Pressable>
 

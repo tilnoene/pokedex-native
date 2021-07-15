@@ -5,7 +5,7 @@ const Stack = createStackNavigator();
 
 import { useUser } from '../context/UserContext';
 
-import Login from './Login';
+import Login from './SignUp';
 import Home from './Home';
 
 export default function RootNavigator() {

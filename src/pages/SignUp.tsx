@@ -5,24 +5,29 @@ import { useUser } from '../context/UserContext';
 import api from '../services/api';
 
 import Button from '../components/Button';
-import LinkButton from '../components/LinkButton';
 
 import { Sizing, Colors } from '../styles';
 
-export default function Login() {
+export default function SignUp() {
     const [username, setUsername] = useState('');
     const [error, setError] = useState('');
 
     const { setUser } = useUser();
 
-    const handleLogin = () => {
-        api.get(`/users/${username}`)
-            .then(response => {
-                setUser(response.data);
-            })
-            .catch(() => {
-                setError('Esse usuário não existe!');
-            });
+    const handleSignUp = async () => {
+        await api.post('/users', { username: username })
+                .then(response => {
+                    setUser({
+                        user: {
+                            id: response.data.id,
+                            username: response.data.username
+                        },
+                        pokemons: []
+                    });
+                })
+                .catch(() => {
+                    setError('Esse usuário já existe!');
+                });
     }
 
     return (
@@ -30,7 +35,7 @@ export default function Login() {
             <View style={styles.container}>
                 <Image
                     style={styles.image}
-                    source={require('../../assets/illustrations/latias-illustration.png')}
+                    source={require('../../assets/illustrations/gyarados-shiny-illustration.png')}
                 />
                 <Text style={styles.title}>
                     Explore e descubra{'\n'} 
@@ -45,11 +50,9 @@ export default function Login() {
                     onChangeText={setUsername}
                 />
                 {!!error && <Text style={styles.errorMessage}>{error}</Text>}
-                <Button onPress={handleLogin}>
-                    <Text style={styles.buttonText}>Entrar</Text>
+                <Button onPress={handleSignUp}>
+                    <Text style={styles.buttonText}>Criar Conta</Text>
                 </Button>
-                
-                <LinkButton text='Criar conta' />
             </View>
         </SafeAreaView>
     );
@@ -74,7 +77,7 @@ const styles = StyleSheet.create({
         color: Colors.gray300,
         fontSize: 28,
         textAlign: 'center',
-        marginTop: -10,
+        marginTop: -4,
     },
     subtitle: {
         fontFamily: 'Barlow_500Medium',

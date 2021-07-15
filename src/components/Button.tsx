@@ -23,6 +23,5 @@ const styles = StyleSheet.create({
         height: Sizing.x60,
         padding: Sizing.x20,
         alignItems: 'center',
-        marginVertical: Sizing.x40,
     }
 });

@@ -18,7 +18,7 @@ export default function LinkButton({ text, ...props }: LinkButtonProps) {
 const styles = StyleSheet.create({
     container: {
         alignSelf: 'center',
-        padding: Sizing.x10
+        padding: Sizing.x30
     },
     linkButtonText: {
         fontFamily: 'Barlow_600SemiBold',

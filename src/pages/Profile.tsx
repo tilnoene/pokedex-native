@@ -1,11 +1,15 @@
-import React from 'react';
-import { View, Text, Image, StyleSheet, Dimensions } from 'react-native';
+import React, { useState } from 'react';
+import { View, Text, Image, StyleSheet, Dimensions, Pressable } from 'react-native';
 import { useUser } from '../context/UserContext';
 
 import { Sizing, Colors } from '../styles';
 import { Feather } from '@expo/vector-icons';
 
+import ModalView from '../components/ModalView';
+
 export default function Favorites() {
+    const [showModal, setShowModal] = useState(false);
+
     const { user } = useUser();
 
     return (
@@ -21,9 +25,11 @@ export default function Favorites() {
                         <Text style={styles.subtitle}>{user?.pokemons.length} Favorito{user?.pokemons.length !== 1 && 's'}</Text>
                     </View>
 
-                    <View style={styles.containerLogout}>
-                        <Feather name='log-out' color={Colors.white} size={Sizing.x30} />
-                    </View>
+                    <Pressable onPress={() => setShowModal(true)}>
+                        <Feather style={styles.containerLogout} name='log-out' color={Colors.white} size={Sizing.x30} />
+                    </Pressable>
+
+                    <ModalView visible={showModal} closeModal={() => setShowModal(false)} />
                 </View>
             </View>
 

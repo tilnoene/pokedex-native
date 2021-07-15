@@ -5,7 +5,7 @@ const Tab = createBottomTabNavigator();
 
 //import Header from '../components/Header';
 import Feed from './Feed';
-import Favorites from './Favorites';
+import Favorites from './Profile';
 import ViewPokemon from './ViewPokemon';
 import PokeballButton from '../components/PokeballButton';
 

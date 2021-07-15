@@ -6,7 +6,7 @@ const Stack = createStackNavigator();
 import { useUser } from '../context/UserContext';
 
 import Login from './Login';
-import Feed from './Feed';
+import Home from './Home';
 
 export default function RootNavigator() {
     const { user } = useUser();
@@ -14,7 +14,7 @@ export default function RootNavigator() {
     return (
         <Stack.Navigator screenOptions={{ headerShown: false }} >
             { user ? (
-                <Stack.Screen name='Feed' component={Feed} />
+                <Stack.Screen name='Home' component={Home} />
             ) : (
                 <Stack.Screen name='Login' component={Login} />
             )}

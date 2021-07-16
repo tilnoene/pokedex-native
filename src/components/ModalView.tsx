@@ -1,21 +1,22 @@
 import React from 'react';
 import { View, Text, StyleSheet, Modal } from 'react-native';
+import Info from './Info';
 
 type ModalViewProps = {
     visible: boolean;
     closeModal: () => void;
+    name: string;
 };
 
-export default function ModalView({ visible, closeModal, ...props }: ModalViewProps) {
+export default function ModalView({ visible, closeModal, name, ...props }: ModalViewProps) {
     return (
-        <Modal style={styles.container} visible={visible} {...props}>
-            <Text>oi</Text>
+        <Modal 
+            visible={visible}
+            animationType='slide'
+            transparent={true}
+            {...props}
+        >
+            <Info name={name} />
         </Modal>
     );
 }
-
-const styles = StyleSheet.create({
-    container: {
-        backgroundColor: 'blue',
-    }
-});

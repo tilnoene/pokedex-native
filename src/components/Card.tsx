@@ -1,23 +1,30 @@
+import { useNavigation } from '@react-navigation/native';
 import React from 'react';
 import { View, Text, Image, StyleSheet } from 'react-native';
+import { BaseButton, BaseButtonProps } from 'react-native-gesture-handler';
 import { Colors, Sizing } from '../styles';
+import { capitalize } from '../utils';
 
 import TypeIcon from './TypeIcon';
 
-type CardProps = {
-    pokemon: Pokemon
-}
-
-export default function Card({ pokemon }: CardProps) {
+type CardProps = BaseButtonProps & {
+    pokemon: Pokemon;
+};
+      
+export default function Card({ pokemon, onPress }: CardProps) {
+    const { navigate } = useNavigation();
+    
     return (
-        <View style={styles.card}>
-            <Text style={styles.number}>#{pokemon.id}</Text>
-            <Text style={styles.name}>{pokemon.name}</Text>
-            <Image style={styles.image} source={{ uri: pokemon.image_url }} />
+        <BaseButton style={styles.card} onPress={onPress}>
+            <Text style={styles.name}>{capitalize(pokemon.name)}</Text>
+            <Text style={styles.number}>#{pokemon.number}</Text>
+            <Image source={{ uri: pokemon.image_url }} style={styles.image} />
             <View style={styles.types}>
-                {pokemon.kind.split(';').map(type => <TypeIcon key={type} type={type} />)}
+                {pokemon.kind.split(';').map((type) => (
+                    <TypeIcon key={type} type={type} />
+                ))}
             </View>
-        </View>
+        </BaseButton>
     );
 }
 

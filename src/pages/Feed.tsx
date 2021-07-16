@@ -55,6 +55,7 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: '#fff',
         width: '100%',
+        paddingTop: Sizing.x40,
     },
     contentContainer: {
         alignItems: 'center',

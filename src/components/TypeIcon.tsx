@@ -5,6 +5,7 @@ import { Sizing } from '../styles';
 
 type TypeIconProps = {
     type: string;
+    size?: 'normal' | 'big';
 };
 
 const types: { [key: string]: any } = {
@@ -27,8 +28,8 @@ const types: { [key: string]: any } = {
     water: require('../../assets/type-icons/water-kind-icon.png'),
 };
 
-export default function TypeIcon({ type }: TypeIconProps) {
-    return <Image style={styles.icon} source={types[type]} />;
+export default function TypeIcon({ type, size }: TypeIconProps) {
+    return <Image source={types[type]} style={size === 'big' ? styles.iconBig : styles.icon} />;
 }
 
 const styles = StyleSheet.create({
@@ -37,4 +38,9 @@ const styles = StyleSheet.create({
         width: Sizing.x40,
         marginHorizontal: Sizing.x05,
     },
+    iconBig: {
+      height: Sizing.x60, 
+      width: Sizing.x60,
+      marginHorizontal: Sizing.x05,
+    }
 });

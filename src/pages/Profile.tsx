@@ -1,22 +1,34 @@
 import React, { useState } from 'react';
-import { View, Text, Image, StyleSheet, Dimensions, Pressable } from 'react-native';
+import { View, Text, Image, StyleSheet, Dimensions, Pressable, FlatList } from 'react-native';
+
+import api from '../services/api';
 import { useUser } from '../context/UserContext';
+
+import ModalView from '../components/ModalView';
+import FavoriteCard from '../components/FavoriteCard';
 
 import { Sizing, Colors } from '../styles';
 import { Feather } from '@expo/vector-icons';
 
-import ModalView from '../components/ModalView';
-
-export default function Favorites() {
+export default function Profile() {
     const [showModal, setShowModal] = useState(false);
-
     const { user, setUser } = useUser();
+    
+    if (user == null) return null;
+
+    const removeFavorite = async (name: string) => {
+        await api.delete(`/users/${user.user.username}/starred/${name}`);
+            setUser({
+                ...user,
+                pokemons: user.pokemons.filter(pokemon => pokemon.name !== name),
+            });
+    };
 
     return (
         <View style={styles.container}>
             <View style={styles.header}>
                 <View style={styles.containerProfilePicture}>
-                    <Image source={require('../../assets/images/natalia.jpg')/* require('../../assets/images/default-user-image.png') */} style={styles.profilePicture} />
+                    <Image source={require('../../assets/images/default-user-image.png')} style={styles.profilePicture} />
                 </View>
                 
                 <View style={styles.containerRight}>
@@ -34,8 +46,8 @@ export default function Favorites() {
             </View>
 
             {user?.pokemons.length === 0 ? 
-                <View>
-                    <Image style={styles.image} source={require('../../assets/illustrations/pikachu-confused-illustration.jpg')} />
+                <View style={styles.containerPokemons}>
+                    <Image style={styles.image} source={require('../../assets/illustrations/magikarp-illustration.png')} />
                     <Text style={styles.title}>
                         Você ainda não favoritou{'\n'} 
                         nenhum Pokémon!
@@ -43,7 +55,14 @@ export default function Favorites() {
                 </View>
             : 
                 <View style={styles.containerPokemons}>
-                    <Text>Ab</Text>
+                    <FlatList
+                        contentContainerStyle={styles.flatList}
+                        data={user.pokemons}
+                        renderItem={({ item }) => (
+                            <FavoriteCard pokemon={item} onRemove={() => removeFavorite(item.name)} />
+                        )}
+                        keyExtractor={(pokemon) => pokemon.id.toString()}
+                    /> 
                 </View>
             }
 
@@ -55,6 +74,7 @@ export default function Favorites() {
 const styles = StyleSheet.create({
     container: {
         backgroundColor: Colors.white,
+        flex: 1,
     },
     header: {
         width: '100%',
@@ -71,7 +91,7 @@ const styles = StyleSheet.create({
         marginLeft: 10,
         //backgroundColor: Colors.primary,
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
     },
     profilePicture: {
         width: 100,
@@ -117,8 +137,17 @@ const styles = StyleSheet.create({
         marginTop: -4,
     },
     containerPokemons: {
+        width: '90%',
+        alignSelf: 'center',
+        backgroundColor: Colors.white,
+        justifyContent: 'center',
+        marginTop: Sizing.x40,
+    },
+    flatList: {
         width: '100%',
-        height: '100%',
-        backgroundColor: 'lightblue',
+        /*flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: 'blue', */
     }
 });

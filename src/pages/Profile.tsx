@@ -40,8 +40,6 @@ export default function Profile() {
                     <Pressable onPress={() => setUser()}>
                         <Feather style={styles.containerLogout} name='log-out' color={Colors.white} size={Sizing.x30} />
                     </Pressable>
-
-                    <ModalView visible={showModal} closeModal={() => setShowModal(false)} />
                 </View>
             </View>
 
@@ -145,9 +143,6 @@ const styles = StyleSheet.create({
     },
     flatList: {
         width: '100%',
-        /*flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: 'blue', */
+        paddingBottom: 200,
     }
 });
